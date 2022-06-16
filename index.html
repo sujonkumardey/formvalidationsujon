@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        input{
+            display: block;
+        }
+        
+        .field_name{
+            width: 100px;
+            float: left;
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        .input_field{
+            width: 500px;
+            float: left;
+        }
+        .form_wrapper{
+            width: 610px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+        .submit_btn {
+            width: 260px;
+            margin-top: 25px;
+            float: left;
+        }
+        .submit_btn input{
+            display: block;
+            
+            float: right;
+        }
+        .warning {
+            color: red;
+            margin-top: 1px;
+        }
+
+        input:focus-visible{
+            border: 2px solid #000;
+            outline: 0;
+        }
+
+        #password_strength{
+            font-weight:bold;
+        }
+
+        .password_field{
+            position: relative;
+        }
+        .pw_v_btn {
+            position: absolute;
+            left: 25%;
+            top: 2px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="form_wrapper">
+        <form action="" id="sign_up_form" onsubmit="return blank_protection()">
+            <div class="field_name">
+                <label for="">Full Name</label>
+            </div>
+            <div class="input_field">
+                <input type="text" id="f_name" onblur="name_validation()" oninput="name_validation()" onchange="name_validation()">
+                <p id="name_error" class="warning"> </p>
+            </div>
+
+            <div class="field_name">
+                <label for="">Mobile No</label>
+            </div>
+            <div class="input_field">
+                <input type="text" id="f_number" onblur="phone_validation()" oninput="phone_validation()" onchange="phone_validation()">
+                <p id="phone_error" class="warning"> </p>
+            </div>
+
+            <div class="field_name">
+                <label for="">Email</label>
+            </div>
+            <div class="input_field">
+                <input type="email" id="email" onblur="email_validation()" oninput="email_validation()" onchange="email_validation()">
+                <p id="email_error" class="warning"> </p>
+            </div>
+
+            <div class="field_name">
+                <label for="">Password</label>
+            </div>
+            <div class="input_field password_field">
+                <input style="display: inline;" type="password" id="password" onkeyup="password_validation()" onblur="password_validation()" oninput="password_validation()" onchange="password_validation()">
+                <p id="password_strength" style="display: inline;" class=""> </p>
+                <p id="password_error" class="warning"> </p>
+                
+
+                <div class="pw_v_btn">
+                    <a href="" onclick="return password_show_hide()"><i class="fa-solid fa-eye"></i></a>
+                </div>
+            </div>
+
+            <div class="field_name">
+                <label for="">Confirm Password</label>
+            </div>
+            <div class="input_field">
+                <input style="display: inline;" onkeyup="confirm_password()" onblur="confirm_password()" type="password" id="password2">
+                <p id="password_error2" class="warning"> </p>
+                
+            </div>
+
+
+            <div class="field_name">
+                <label for="">Age</label>
+            </div>
+            <div class="input_field">
+                <input type="number" id="age" onblur="age_validation()" oninput="age_validation()" onchange="age_validation()">
+                <p id="age_error" class="warning"> </p>
+            </div>
+
+
+            <div class="field_name">
+                <label for="">Gender</label>
+            </div>
+            <div class="input_field">
+                <input style="display: inline;" type="radio" id="gender" name="gender" onblur="gender_validation()" oninput="gender_validation()" onchange="gender_validation()"> Male
+                <input style="display: inline;" type="radio" id="gender" name="gender" onblur="gender_validation()" oninput="gender_validation()" onchange="gender_validation()"> Female
+                <p id="gender_error" class="warning"> </p>
+            </div>
+
+
+            <div class="field_name">
+                <label for="">Interest</label>
+            </div>
+            <div class="input_field">
+                <input style="display: inline;" type="checkbox" id="interest" name="gender" onblur="interest_validation()" oninput="interest_validation()" onchange="interest_validation()"> Cricket
+                <input style="display: inline;" type="checkbox" id="interest" name="gender" onblur="interest_validation()" oninput="interest_validation()" onchange="interest_validation()"> Football
+                <input style="display: inline;" type="checkbox" id="interest" name="gender" onblur="interest_validation()" oninput="interest_validation()" onchange="interest_validation()"> Badminton
+                <input style="display: inline;" type="checkbox" id="interest" name="gender" onblur="interest_validation()" oninput="interest_validation()" onchange="interest_validation()"> Mobile Game
+                <p id="interest_error" class="warning"> </p>
+            </div>
+
+
+            <div class="field_name">
+                <label for="">Country</label>
+            </div>
+            <div class="input_field">
+                <select name="" id="country" onchange="country_validation()" onblur="country_validation()" oninput="country_validation()" >
+                    <option selected="true" disabled="disabled" value="">Select Your Country</option>
+                    <option value="Bangladesh">Bangladesh</option>
+                    <option value="India">India</option>
+                    <option value="Nepal">Nepal</option>
+                    <option value="Sri Lanka">Sri Lanka</option>
+                </select>
+                <p id="country_error" class="warning"> </p>
+            </div>
+            
+
+            
+            <div class="submit_btn">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
